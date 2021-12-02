@@ -1,3 +1,13 @@
 .fort{
     background: lightpink;
 }
+.error{
+    color: red;
+    font-style: italic;
+}
+.registration{
+    
+    width: 60%;
+    margin-top: 30px;
+    padding: 20px;
+}

@@ -1,9 +1,27 @@
 <?php
- if(isset($_POST['first_name'])){
+ if(isset($_POST['submit'])){
      $fname = $_POST['first_name'];
      $lname = $_POST['last_name'];
-     $pass = $_POST['pass'];
+     $pass = $_POST['password'];
      $mail = $_POST['email'];
+
+     $error = array();
+     if($fname == NULL){
+       $error['fname'] = "First Name is blank";
+     }
+
+     if($lname == NULL){
+        $error['lname'] = "Last Name is blank";
+      }
+
+      if($pass == NULL){
+        $error['pass'] = "Put your correct password";
+      }
+
+      if($mail == NULL){
+        $error['mail'] = "Enter your Email Address";
+      }
+     
  }
 ?>
 
@@ -18,27 +36,57 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="">
     <form action="" method="POST" class="fort">
     <div class="container  d-flex justify-content-center fort">
-        <div class="">
+        <div class="registration">
             <h3>Welcome To Chatbox</h3>
             <H6>Enjoy More in your own way</H6>
             <label for="first_name">First Name:</label><br>
             <input type="text" name="first_name" id="first_name"> <br>
+            <div class="error">
+            <?php 
+              if(isset($error['fname'])){
+                  echo $error['fname'];
+              }
+            ?>
+            </div>
             
             <label for="last_name">Last Name:</label> <br>
             <input type="text" name="last_name" id="last_name"> <br>
+            <div class="error">
+                <?php 
+                 if(isset($error['lname'])){
+                     echo $error['lname'];
+                 }
+                ?>
+            </div>
 
             <label for="password">Password:</label> <br>
             <input type="password" name="password" id="password"> <br>
+            <div class="error">
+                <?php 
+                 if(isset($error['pass'])){
+                     echo $error['pass'];
+                 }
+                ?>
+            </div>
             
             <label for="email">Email_Address</label> <br>
             <input type="email" name="email" id="email"> <br>
+            <div class="error">
+                <?php 
+                 if(isset($error['mail'])){
+                     echo $error['mail'];
+                 }
+                ?>
+            </div>
               
-            <button type="button" class="btn btn-danger" name="submit">Submit</button> <br>
+            <input type="submit" name="submit" value="Submit">
         </div>
    </div>
-    </form>
+    </form> 
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
