@@ -1,9 +1,15 @@
 <?php
+ 
+ if(file_exists(dirname(__FILE__).'/confiq.php')){
+     require_once(dirname(__FILE__).'/confiq.php');
+ }
+
  if(isset($_POST['submit'])){
      $fname = $_POST['first_name'];
      $lname = $_POST['last_name'];
-     $pass = $_POST['password'];
      $mail = $_POST['email'];
+     $pass = $_POST['password'];
+     
 
      $error = array();
      if($fname == NULL){
@@ -17,9 +23,16 @@
       if($pass == NULL){
         $error['pass'] = "Put your correct password";
       }
+      elseif(strlen($pass) <=6){
+        $error['pass'] = "Put More than 6 char";
+      }
 
       if($mail == NULL){
         $error['mail'] = "Enter your Email Address";
+      }
+
+      if( count($error) ==0){
+         mysqli_query($connection, "INSERT INTO userchat (first_name, last_name, email,pass) VALUES('$fname',' $lname','$mail', '$pass')");
       }
      
  }
@@ -62,6 +75,16 @@
                 ?>
             </div>
 
+            <label for="email">Email_Address</label> <br>
+            <input type="email" name="email" id="email"> <br>
+            <div class="error">
+                <?php 
+                 if(isset($error['mail'])){
+                     echo $error['mail'];
+                 }
+                ?>
+            </div>
+
             <label for="password">Password:</label> <br>
             <input type="password" name="password" id="password"> <br>
             <div class="error">
@@ -72,15 +95,7 @@
                 ?>
             </div>
             
-            <label for="email">Email_Address</label> <br>
-            <input type="email" name="email" id="email"> <br>
-            <div class="error">
-                <?php 
-                 if(isset($error['mail'])){
-                     echo $error['mail'];
-                 }
-                ?>
-            </div>
+          
               
             <input type="submit" name="submit" value="Submit">
         </div>
