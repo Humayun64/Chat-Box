@@ -32,7 +32,11 @@
       }
 
       if( count($error) ==0){
-         mysqli_query($connection, "INSERT INTO userchat (first_name, last_name, email,pass) VALUES('$fname',' $lname','$mail', '$pass')");
+        $query= mysqli_query($connection, "INSERT INTO userchat (first_name, last_name, email,pass) VALUES('$fname',' $lname','$mail', '$pass')");
+
+        if($query){
+          $sucess = "You have been registered";
+        }
       }
      
  }
@@ -49,7 +53,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="">
+    
     <form action="" method="POST" class="fort">
     <div class="container  d-flex justify-content-center fort">
         <div class="registration">
@@ -94,14 +98,20 @@
                  }
                 ?>
             </div>
-            
-          
-              
             <input type="submit" name="submit" value="Submit">
+      
         </div>
-   </div>
-    </form> 
-    </div>
+      
+       </div>
+      
+ </form> 
+ <div class="sucess">
+                <?php 
+                    if(isset($sucess)){
+                        echo $sucess;
+                    }
+                ?>
+        </div>  
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
